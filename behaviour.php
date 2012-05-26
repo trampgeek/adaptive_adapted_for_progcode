@@ -24,29 +24,31 @@
  */
 
 /**
- *  Need a special behaviour for pycode questions (which are assumed to be
+ *  Need a special behaviour for progcode questions (which are assumed to be
  *  run in some sort of adaptive mode), in order to avoid repeating
  *  the expensive test run whenever question::grade_response is called.
  *  
  *  The solution adopted here is to override the process_submit method of
- *  the adaptive behaviour so that it calls the pycode::grade_response_raw
- *  method, rather than pycode::grade_response. The raw method takes the
+ *  the adaptive behaviour so that it calls the progcode::grade_response_raw
+ *  method, rather than progcode::grade_response. The raw method takes the
  *  question_attempt_pending_step as a parameter rather than the response
  *  copied from that step. This allows the question to cache the test results
  *  within the step, which is stored in the database.
  * 
- * TODO: communicate to developers that the interface is broken. This file
- * (or the functionality it provides, anyway) belongs somewhere in the pycode subtree.
+ * TODO: keep in touch with developers regarding the fact that this interface
+ * is broken (admitted by Tim Hunt in earlier communications). This file
+ * (or the functionality it provides, anyway) belongs somewhere in
+ * the question/type subtree.
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-class qbehaviour_adaptive_adapted_for_pycode extends qbehaviour_adaptive {
+class qbehaviour_adaptive_adapted_for_progcode extends qbehaviour_adaptive {
     const IS_ARCHETYPAL = false;
     
     public function required_question_definition_type() {
-        // Restrict behaviour to pycode questions
-        return 'qtype_pycode_question';
+        // Restrict behaviour to programming questions
+        return 'qtype_progcode_question';
     }
     
     
