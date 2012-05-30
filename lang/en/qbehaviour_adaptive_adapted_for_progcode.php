@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'qbehaviour_interactive_adapted_for_pycode', language 'en'.
+ * Strings for component 'qbehaviour_interactive_adapted_for_progcode', language 'en'.
  *
  * @package    qbehaviour
  * @subpackage interactive
@@ -24,6 +24,6 @@
  */
 
 $string['notcomplete'] = 'Not complete';
-$string['pluginname'] = 'Adaptive adapted for pycode';
+$string['pluginname'] = 'Adaptive adapted for progcode';
 $string['triesremaining'] = 'Tries remaining: {$a}';
 $string['tryagain'] = 'Try again';
