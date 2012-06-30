@@ -56,7 +56,7 @@ class qbehaviour_adaptive_adapted_for_progcode extends qbehaviour_adaptive {
         $status = $this->process_save($pendingstep);
 
         $response = $pendingstep->get_qt_data();
-        if (!$this->question->is_gradable_response($response)) {
+        if (!$this->question->is_complete_response($response)) {
             $pendingstep->set_state(question_state::$invalid);
             if ($this->qa->get_state() != question_state::$invalid) {
                 $status = question_attempt::KEEP;
@@ -142,5 +142,9 @@ class qbehaviour_adaptive_adapted_for_progcode extends qbehaviour_adaptive {
             $pendingstep->set_behaviour_var('_rawfraction', $fraction);
             $pendingstep->set_new_response_summary($this->question->summarise_response($response));
         }
+        
+        $pendingstep->set_state($state);
+        $pendingstep->set_fraction(max($prevbest, $this->adjusted_fraction($fraction, $prevtries)));
+        return question_attempt::KEEP;
     }
 }
